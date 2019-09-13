@@ -33,4 +33,20 @@ function fetch_array($result)
     return mysqli_fetch_array($result);
 }
 
+function get_cat(){
+
+      $query = query("SELECT * FROM products_categorys");
+    confirm($query);
+
+    while($row = fetch_array($query)) {
+
+$product_cat =<<<DELIMETER
+ <option value="{$row['cat_id']}">{$row['cat_name']}</option>
+DELIMETER;
+        echo $product_cat;
+    }
+
+}
+
+
 ?>

@@ -4,6 +4,7 @@ include(TEMPLATE_BACK . "/header.php");
 if (!isset($_SESSION['islogin'])) {
     redirect("login");
 }
+
 ?>
 
 
@@ -36,16 +37,17 @@ if (!isset($_SESSION['islogin'])) {
         <div class="dashboard-wrapper">
             <?php
 
-                if($_SERVER['REQUEST_URI']== "/cms/public/index.php"){
+                if($_SERVER['REQUEST_URI']== "/cms/public/index.php" || $_SERVER['REQUEST_URI'] == "/cms/public/index"){
                            include(TEMPLATE_BACK . "/contant/indexwraper.php");
                 }
-
-
-
 
                 if(isset($_GET['add'])){
                     include(TEMPLATE_BACK . "/contant/Add_Products.php");
                 }
+
+            if (isset($_GET['Categories'])) {
+                include(TEMPLATE_BACK . "/contant/Categories.php");
+            }
 
             ?>
             <!-- ============================================================== -->
