@@ -21,6 +21,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="index?Categories">Add Categories</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index?View">View Products</a>
+                                </li>
 
                             </ul>
                         </div>

@@ -38,11 +38,11 @@ if (strlen($_POST['product_title']) == 0 || strlen($_POST['product_price']) == 0
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["product_image"]["tmp_name"]);
     if ($check !== false) {
-        echo "<span style='color: #ed3228;'>File is an image - " . $check["mime"] . ".</span>";
+        echo "<h1><span style='color: #ed3228;'>File is an image - " . $check["mime"] . ".</span></h1>";
         $uploadOk = 1;
         $doicansendtodatabase = 1;
     } else {
-        echo "<span style='color: #ed3228;'>File is not an image.</span>";
+        echo "<h1><span style='color: #ed3228;'>File is not an image.</span></h1>";
         $uploadOk = 0;
         $doicansendtodatabase = 1;
     }
@@ -50,7 +50,7 @@ if (isset($_POST["submit"])) {
 
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "<span style='color: #ed3228;'>Sorry, file already exists.</span>";
+    echo "<h1><span style='color: #ed3228;'>Sorry, file already exists.</span></h1>";
     $uploadOk = 0;
     $doicansendtodatabase = 1;
 }
@@ -65,13 +65,13 @@ if (
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif"
 ) {
-    echo "<span style='color: #ed3228;'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</span>";
+    echo "<h1><span style='color: #ed3228;'>Sorry, only JPG, JPEG, PNG & GIF files are allowed.</span></h1>";
     $uploadOk = 0;
     $doicansendtodatabase = 1;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "<span style='color: #ed3228;'>Sorry, your file was not uploaded.</span>";
+    echo "<h1><span style='color: #ed3228;'>Sorry, your file was not uploaded.</span></h1>";
     $doicansendtodatabase = 1;
     // if everything is ok, try to upload file
 } else {
@@ -81,9 +81,9 @@ if ($uploadOk == 0) {
                 $product_image = escape_string($target_file);
                 $query = query("INSERT INTO products (product_name,product_price,net_profit,product_code,product_image,product_description,product_color,product_size,product_type,product_count,product_cat_id) VALUES('$product_title','$product_price','$net_profit','$product_code','$product_image','$product_disc','$product_color','$product_size','$product_type','$product_count','$product_cat')");
                 confirm($query);
-                echo "<span style='color: #00FFFF;'>The Product has been Added</span>";
+                echo "<h1><span style='color: #00FFFF;'>The Product has been Added</span></h1>";
             } else {
-                echo "<span style='color: #ed3228;'>Sorry, there was an error uploading your file.</span>";
+                echo "<h1><span style='color: #ed3228;'>Sorry, there was an error uploading your file.</span></h1>";
                 $doicansendtodatabase = 1;
             }
             }

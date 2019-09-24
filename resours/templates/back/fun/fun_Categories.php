@@ -2,13 +2,16 @@
 
 
 $error_array = array();
+if (isset($_POST['Cancel'])) {
+    redirect("index.php");
+}
 
 //add cat
 if(isset($_POST['add_cat'])){
 
 $cat_name = escape_string($_POST['cat']);
 
-$query  = query("SELECT * FROM products_categorys WHERE cat_name ='$cat_name'");
+$query  = query("SELECT * FROM products_categorys WHERE cat_name ='escape_string($cat_name)'");
 confirm($query);
 if(strlen($cat_name)!=0){
         if (mysqli_num_rows($query) == 0) {

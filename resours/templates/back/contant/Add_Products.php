@@ -32,7 +32,7 @@
 
 
 
-            <?php require "../resours/templates/back/fun/fun_products.php";?>
+            <?php require "../resours/templates/back/fun/fun_products.php"; ?>
 
 
 
@@ -103,9 +103,8 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-group row">
-                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Product count</label>
+                                    <label class="col-12 col-sm-3 col-form-label text-sm-right">Product Quantity</label>
                                     <div class="col-12 col-sm-8 col-lg-6">
                                         <input required="" type="number" min="1" max="100" name="product_count" placeholder="Number between 1 - 100" class="form-control">
                                     </div>

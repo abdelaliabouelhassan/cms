@@ -4,22 +4,27 @@
 require "../resours/templates/back/fun/fun_Categories.php";
 
 ?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h1 class="card-header">Add Categories</h1>
             <div class="card-body">
-               <?php if(in_array("<span style='color: #ed3228;'>This Categories Is already exist!</span>", $error_array)){
+                <?php if (in_array("<span style='color: #ed3228;'>This Categories Is already exist!</span>", $error_array)) {
                     echo "<span style='color: #ed3228;'>This Categories Is already exist!</span>";
-               }
-            elseif (in_array("<span style='color: #00FFFF;'>The categories has been Added</span>", $error_array)) {
-              echo "<span style='color: #00FFFF;'>The categories has been Added</span>";
-             }
-             elseif (in_array("<span style='color: #ed3228;'>Fill this Input pleas</span>",$error_array)) {
-                echo "<span style='color: #ed3228;'>Fill this Input pleas</span>";
-             }
-               ?>
+                } elseif (in_array("<span style='color: #00FFFF;'>The categories has been Added</span>", $error_array)) {
+                    echo "<span style='color: #00FFFF;'>The categories has been Added</span>";
+                } elseif (in_array("<span style='color: #ed3228;'>Fill this Input pleas</span>", $error_array)) {
+                    echo "<span style='color: #ed3228;'>Fill this Input pleas</span>";
+                }
+                ?>
                 <form id="validationform" action="index?Categories" enctype="multipart/form-data" data-parsley-validate="" novalidate="" method="post">
                     <div class="form-group row">
                         <div class="col-12 col-sm-8 col-lg-6">
@@ -45,11 +50,11 @@ require "../resours/templates/back/fun/fun_Categories.php";
             <h1 class="card-header">Delete Categories</h1>
             <div class="card-body">
                 <?php
-                    if(in_array("<span style='color: #ed3228;'>Please Select Categories</span>",$error_array))
-                        echo "<span style='color: #ed3228;'>Please Select Categories</span>";
+                if (in_array("<span style='color: #ed3228;'>Please Select Categories</span>", $error_array))
+                    echo "<span style='color: #ed3228;'>Please Select Categories</span>";
 
-                    if(in_array("<span style='color: #00FFFF;'>The Categorie has been Deleted</span>",$error_array))
-                        echo "<span style='color: #00FFFF;'>The Categorie has been Deleted</span>";
+                if (in_array("<span style='color: #00FFFF;'>The Categorie has been Deleted</span>", $error_array))
+                    echo "<span style='color: #00FFFF;'>The Categorie has been Deleted</span>";
                 ?>
                 <form id="validationform" action="index?Categories" enctype="multipart/form-data" data-parsley-validate="" novalidate="" method="post">
                     <div class="form-group row">
