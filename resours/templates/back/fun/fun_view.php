@@ -81,7 +81,7 @@ function products_view()
                     <div class="product-btn">
                         <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-primary">Add to Cart</a>
                         <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-outline-light">Details</a>
-                        <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                        <a href="index?edit=<?php echo $row['id']; ?>" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
                     </div>
                 </div>
             </div>
@@ -133,9 +133,9 @@ function products_view()
                             <div class="product-price">$<?php echo $row['product_price']; ?></div>
                         </div>
                         <div class="product-btn">
-                            <a href="index?View&id=<?php echo $row['id']; ?>" class="btn btn-primary">Add to Cart</a>
-                            <a href="index?View&id=<?php echo $row['id']; ?>" class="btn btn-outline-light">Details</a>
-                            <a href="index?View&id=<?php echo $row['id']; ?>" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                            <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-primary">Add to Cart</a>
+                            <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-outline-light">Details</a>
+                            <a href="index?edit=<?php echo $row['id']; ?>" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
                         </div>
                     </div>
                 </div>

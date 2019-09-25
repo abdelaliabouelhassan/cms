@@ -57,6 +57,11 @@ if (!isset($_SESSION['islogin'])) {
                 include(TEMPLATE_BACK . "/contant/product_details.php");
             }
 
+            if (isset($_GET['edit'])) {
+                include(TEMPLATE_BACK . "/contant/edit.php");
+            }
+
+
             ?>
             <!-- ============================================================== -->
             <!-- footer -->

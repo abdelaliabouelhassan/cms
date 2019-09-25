@@ -30,7 +30,10 @@
 <body>
    <?php
         require "../resours/config.php";
-        $error_array = array();
+		$error_array = array();
+		if(isset($_SESSION['remember'])){
+			redirect("../public/index.php");
+		}
         if(isset($_POST['login'])){
             $name = escape_string($_POST['username']);
             $password =escape_string($_POST['pass']);
@@ -39,6 +42,9 @@
                     array_push($error_array,"Email or password was incorrect</span><br>");
                 }
                 else{
+					if(!empty($_POST['remember-me'])){
+			     $_SESSION['remember'] = "true";
+					}
 					$_SESSION['islogin'] ="true";
                   redirect("../public/index.php");
                 }
