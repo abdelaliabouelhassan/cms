@@ -33,7 +33,7 @@
                         <div id="submenu-2" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                    <a class="nav-link" href="index?cart">View Cart<span class="badge badge-secondary">New</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="pages/general.html">General</a>

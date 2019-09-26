@@ -61,6 +61,10 @@ if (!isset($_SESSION['islogin'])) {
                 include(TEMPLATE_BACK . "/contant/edit.php");
             }
 
+            if (isset($_GET['cart'])) {
+                include(TEMPLATE_BACK . "/contant/view_cart.php");
+            }
+
 
             ?>
             <!-- ============================================================== -->
