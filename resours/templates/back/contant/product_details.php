@@ -52,6 +52,9 @@
                 </div>
             </div>
 
+
+
+
             <?php
 
             if (isset($_GET['product_details'])) {
@@ -61,26 +64,38 @@
                 $row = fetch_array($query);
             }
             $error_array = array();
+              $is_done = 0;
             if (isset($_POST['sell'])) {
+
                 $Quantity = trim(escape_string($_POST['Quantity']));
                 $price = trim(escape_string($_POST['price']));
                 $Profit = trim(escape_string($_POST['Profit']));
                 $Quantity_available =  $row['product_count'];
-                    if($Quantity_available == 0){
-              array_push($error_array, "<span style='color: #ed3228;'>Sorry there is no Quantity available</span>");
-                    }
+                if ($Quantity_available == 0) {
+                    array_push($error_array, "<span style='color: #ed3228;'>Sorry there is no Quantity available</span>");
+                }
                 if (strlen($price) == 0 || strlen($Profit) == 0) {
                     array_push($error_array, "<span style='color: #ed3228;'>Fill Price Input or Profit Input</span>");
-                } if(empty($error_array)) {
+                }
+                if (empty($error_array)) {
                     $query = query("INSERT INTO the_sales (Quantity,Price,Profit,product_id) VALUES('$Quantity','$price','$Profit','$id_selected')");
                     confirm($query);
-             $Quantity_available = $Quantity_available -  $Quantity;
-             $query = query("UPDATE products set product_count = ('$Quantity_available') WHERE id = ('$id_selected')");
-             confirm($query);
+                    $Quantity_available = $Quantity_available -  $Quantity;
+                    $query = query("UPDATE products set product_count = ('$Quantity_available') WHERE id = ('$id_selected')");
+                    confirm($query);
+                    $query = query("DELETE FROM cart WHERE id_cart = '$id_selected'");
+                    confirm($query);
+                    $is_done = 1;
+                    redirect("index?product_details=$id_selected");
                 }
             }
 
             ?>
+
+
+
+
+
 
             <div class="row">
                 <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -110,7 +125,10 @@
                             if (in_array("<span style='color: #ed3228;'>Sorry there is no Quantity available</span>", $error_array)) {
                                 echo "<span style='color: #ed3228;'>Sorry there is no Quantity available</span><br>";
                             }
+
                             ?>
+
+
                             <form action="index?product_details=<?php echo  $id_selected; ?>" method="post">
                                 <div class="product-details">
                                     <div class="border-bottom pb-3 mb-3">

@@ -1,47 +1,40 @@
 <?php
 
 
-if(isset($_get['cart'])){
+//add to sell
+if(isset($_GET['add_p'])){
+    header("Location: ../../../../public/index?product_details=".$_GET['add_p']);
+
+}
+
+
+
+//remove from cart
+if (isset($_GET['delete_p'])) {
     require("../../../config.php");
-    $gts = escape_string($_GET['cart']);
-    $stri = $gts;
-     $_SESSION[$stri] = $gts;
-     echo "gg";
-}
 
-function Cart(){
+    $id = $_GET['delete_p'];
+    $query = query("DELETE FROM cart WHERE id_cart = '$id'");
+    redirect("../../../../public/index?cart");
+ }
 
+//add to cart
+if(isset($_GET['cart'])){
+    require("../../../config.php");
 
+    $id = $_GET['cart'];
 
-$gts = escape_string($_GET['cart']);
-$stri = "p".$gts;
-$id_pp =  $_SESSION[$stri] = $gts;
-
-$query = query("SELECT * FROM products WHERE id = '$id_pp'");
-confirm($query);
-while ($row = fetch_array($query)) {
-
-    $cart_p = <<<DELIMETER
-            <tr>
-                       <th scope="row">{$row['id']}</th>
-                       <td>{$row['product_name']}</td>
-                       <td>{$row['product_price']}</td>
-                       <td>{$row['product_count']}</td>
-                       <td><a href=""> <a class="btn btn-success" href="../resours/templates/back/fun/fun_view_cart.php"><span class="glyphicon glyphicon-plus"></span>+</a></a></td>
-                       <td> <a class="btn btn-danger" href=""><span class="glyphicon glyphicon-remove"></span>-</a> </td>
-            </tr>
-DELIMETER;
-    echo $cart_p;
+    $query = query("INSERT INTO cart (id_cart) VALUES ('$id')");
 
 
+
+  redirect("../../../../public/index?cart");
 
 
 }
 
 
 
-
-}
 
 
 

@@ -116,8 +116,31 @@ function products_view()
                     <div class="product-img-head">
                         <div class="product-img">
                             <img src="<?php echo $row['product_image']; ?>" alt="" class="img-fluid"></div>
-                        <div class="ribbons"></div>
-                        <div class="ribbons-text">New</div>
+                        <?php
+                                    if ($row['product_count'] != 0) {
+                                        ?>
+
+                            <div class="ribbons"></div>
+                            <div class="ribbons-text">good</div>
+
+                        <?php } ?>
+                        <?php
+                                    if ($row['product_count'] == 0) {
+                                        ?>
+                            <div class="ribbons bg-danger"></div>
+                            <div class="ribbons-text">END</div>
+
+                        <?php } ?>
+
+                        <?php
+                                    if ($row['product_count'] <= 3 && $row['product_count'] >= 1) {
+
+                                        ?>
+
+                            <div class="ribbons bg-brand"></div>
+                            <div class="ribbons-text">close</div>
+
+                        <?php    } ?>
                         <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
                     </div>
                     <div class="product-content">
@@ -133,7 +156,7 @@ function products_view()
                             <div class="product-price">$<?php echo $row['product_price']; ?></div>
                         </div>
                         <div class="product-btn">
-                            <a href="../resours/templates/back/contant/view_cart?cart=<?php echo $row['id']; ?>" class="btn btn-primary">Add to Cart</a>
+                            <a href="../resours/templates/back/fun/fun_view_cart?cart=<?php echo $row['id']; ?>" class="btn btn-primary">Add to Cart</a>
                             <a href="index?product_details=<?php echo $row['id']; ?>" class="btn btn-outline-light">Details</a>
                             <a href="index?edit=<?php echo $row['id']; ?>" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
                         </div>

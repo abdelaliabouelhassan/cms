@@ -36,7 +36,9 @@
 		}
         if(isset($_POST['login'])){
             $name = escape_string($_POST['username']);
-            $password =escape_string($_POST['pass']);
+			$password =escape_string($_POST['pass']);
+
+
                 $query = query("SELECT * FROM users WHERE log_name = '$name' AND password = '$password' ");
                 if(mysqli_num_rows($query) == 0){
                     array_push($error_array,"Email or password was incorrect</span><br>");
