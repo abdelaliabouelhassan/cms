@@ -13,6 +13,7 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Product Price</th>
                                     <th scope="col">Quantity available</th>
+                                    <th scope="col">Added By</th>
                                     <th scope="col">date</th>
                                     <th scope="col">Sell</th>
                                     <th scope="col">Remove</th>
@@ -37,6 +38,7 @@
                                     <td>{$row1['product_name']}</td>
                                     <td>{$row1['product_price']}</td>
                                     <td>{$row1['product_count']}</td>
+                                     <td>{$row['added_by']}</td>
                                     <td>{$row['date']}</td>
                                     <td><a href=""> <a class="btn btn-success" href="../resours/templates/back/fun/fun_view_cart.php?add_p={$row1['id']}"><span class="glyphicon glyphicon-plus"></span>+</a></a></td>
                                     <td> <a class="btn btn-danger" href="../resours/templates/back/fun/fun_view_cart.php?delete_p={$row1['id']}"><span class="glyphicon glyphicon-remove"></span>-</a> </td>

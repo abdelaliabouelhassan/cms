@@ -23,12 +23,12 @@ if(isset($_GET['cart'])){
     require("../../../config.php");
 
     $id = $_GET['cart'];
+    $added_by = $_SESSION['roll'];
+    $query = query("INSERT INTO cart (id_cart,added_by) VALUES ('$id','$added_by')");
 
-    $query = query("INSERT INTO cart (id_cart) VALUES ('$id')");
 
 
-
-  redirect("../../../../public/index?cart");
+  redirect("../../../../public/index?View");
 
 
 }

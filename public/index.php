@@ -5,6 +5,7 @@ if (!isset($_SESSION['islogin'])) {
     redirect("login");
 }
 
+
 ?>
 
 
@@ -18,6 +19,8 @@ if (!isset($_SESSION['islogin'])) {
         <!-- ============================================================== -->
         <?php
         include(TEMPLATE_BACK . "/top_side.php");
+
+
         ?>
         <!-- ============================================================== -->
         <!-- end navbar -->
@@ -34,36 +37,83 @@ if (!isset($_SESSION['islogin'])) {
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
+
+
+
         <div class="dashboard-wrapper">
             <?php
+            if ($_SESSION['is_firsttime'] == 'yes') {
 
-                if($_SERVER['REQUEST_URI']== "/cms/public/index.php" || $_SERVER['REQUEST_URI'] == "/cms/public/index"){
-                           include(TEMPLATE_BACK . "/contant/indexwraper.php");
-                }
+                ?>
 
-                if(isset($_GET['add'])){
-                    include(TEMPLATE_BACK . "/contant/Add_Products.php");
-                }
 
-            if (isset($_GET['Categories'])) {
-                include(TEMPLATE_BACK . "/contant/Categories.php");
-            }
+                <div class="card-body border-top">
+                    <h4>Important</h4>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Hi welcome sir !</strong> You should change the password and log key in setting
+                        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+                </div>
 
-            if(isset($_GET['View'])){
-                include(TEMPLATE_BACK . "/contant/View.php");
-            }
+            <?php } ?>
 
-            if (isset($_GET['product_details'])) {
-                include(TEMPLATE_BACK . "/contant/product_details.php");
-            }
 
-            if (isset($_GET['edit'])) {
-                include(TEMPLATE_BACK . "/contant/edit.php");
-            }
 
-            if (isset($_GET['cart'])) {
-                include(TEMPLATE_BACK . "/contant/view_cart.php");
-            }
+
+            <?php
+last_active();
+if($_SESSION['roll'] == "Admin"){
+    if ($_SERVER['REQUEST_URI'] == "/cms/public/index.php" || $_SERVER['REQUEST_URI'] == "/cms/public/index" || $_SERVER['REQUEST_URI'] == "/cms/public/") {
+        include(TEMPLATE_BACK . "/contant/indexwraper.php");
+    }
+
+    if (isset($_GET['add'])) {
+        include(TEMPLATE_BACK . "/contant/Add_Products.php");
+    }
+
+    if (isset($_GET['Categories'])) {
+        include(TEMPLATE_BACK . "/contant/Categories.php");
+    }
+
+    if (isset($_GET['View'])) {
+        include(TEMPLATE_BACK . "/contant/View.php");
+    }
+
+    if (isset($_GET['product_details'])) {
+        include(TEMPLATE_BACK . "/contant/product_details.php");
+    }
+
+    if (isset($_GET['edit'])) {
+        include(TEMPLATE_BACK . "/contant/edit.php");
+    }
+
+    if (isset($_GET['cart'])) {
+        include(TEMPLATE_BACK . "/contant/view_cart.php");
+    }
+
+    if (isset($_GET['Setting'])) {
+        include(TEMPLATE_BACK . "/contant/Setting.php");
+    }
+
+    if (isset($_GET['Account'])) {
+        include(TEMPLATE_BACK . "/contant/Account.php");
+    }
+    if (isset($_GET['add_user'])) {
+        include(TEMPLATE_BACK . "/contant/add_user.php");
+    }
+}
+
+if($_SESSION['roll'] == "Moderator"){
+    if (isset($_GET['View'])) {
+        include(TEMPLATE_BACK . "/contant/View.php");
+    }
+
+}
+
+
+
 
 
             ?>

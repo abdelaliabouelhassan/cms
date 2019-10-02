@@ -49,6 +49,12 @@ DELIMETER;
 }
 
 
+function last_active(){
+    $id = $_SESSION['id_user'];
+    $query1  = query("UPDATE users SET last_active = NOW() WHERE id = '$id'");
+    confirm($query1);
+}
+
 
 
 
