@@ -6,6 +6,99 @@ if (!isset($_SESSION['islogin'])) {
 }
 
 
+
+            ///update day month years net profit is here
+
+            $query = query("SELECT * FROM day_net");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nexday = strtotime($tt) + (1 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+//day
+            if($today >= $nexday){
+                     $sum_day = $row['Profit'];
+                    $query = query("SELECT * FROM week_net");
+                    confirm($query);
+                    $row = fetch_array($query);
+                    $week_net = $row['Profit'];
+                    $_7day_net = $week_net + $sum_day;
+                    $query = query("UPDATE week_net set Profit = '$_7day_net'");
+                    confirm($query);
+                    $zero = 0;
+                    $query = query("UPDATE day_net set Profit = '$zero', time = NOW()");
+                    confirm($query);
+            }
+ //week
+
+
+            $query = query("SELECT * FROM week_net");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nexweek = strtotime($tt) + (7 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nexweek) {
+                $sum_week = $row['Profit'];
+                $query = query("SELECT * FROM month_net");
+                confirm($query);
+                $row = fetch_array($query);
+                $month_net = $row['Profit'];
+                $_30day_net = $month_net + $sum_week;
+                $query = query("UPDATE month_net set Profit = '$_30day_net'");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE week_net set Profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+  //month
+            $query = query("SELECT * FROM month_net");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nextmonth = strtotime($tt) + (30 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nextmonth) {
+                $sum_month = $row['Profit'];
+                $query = query("SELECT * FROM year_net");
+                confirm($query);
+                $row = fetch_array($query);
+                $year_net = $row['Profit'];
+                $_360day_net = $year_net + $sum_month;
+                $query = query("UPDATE year_net set Profit = '$_360day_net'");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE month_net set Profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+
+            //year
+
+            $query = query("SELECT * FROM year_net");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nextyear = strtotime($tt) + (365 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nextyear) {
+
+                $zero = 0;
+                $query = query("UPDATE year_net set Profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
@@ -63,6 +156,8 @@ if (!isset($_SESSION['islogin'])) {
 
 
             <?php
+
+
 last_active();
 if($_SESSION['roll'] == "Admin"){
     if ($_SERVER['REQUEST_URI'] == "/cms/public/index.php" || $_SERVER['REQUEST_URI'] == "/cms/public/index" || $_SERVER['REQUEST_URI'] == "/cms/public/") {
@@ -103,12 +198,37 @@ if($_SESSION['roll'] == "Admin"){
     if (isset($_GET['add_user'])) {
         include(TEMPLATE_BACK . "/contant/add_user.php");
     }
+    if (isset($_GET['user'])) {
+        include(TEMPLATE_BACK . "/contant/user.php");
+    }
+
+    if (isset($_GET['Search'])) {
+        include(TEMPLATE_BACK . "/contant/View.php");
+    }
+
+
+
+
 }
+
+
+
+
+
+
 
 if($_SESSION['roll'] == "Moderator"){
     if (isset($_GET['View'])) {
         include(TEMPLATE_BACK . "/contant/View.php");
     }
+    if (isset($_GET['user'])) {
+        include(TEMPLATE_BACK . "/contant/user.php");
+    }
+    if (isset($_GET['Search'])) {
+        include(TEMPLATE_BACK . "/contant/View.php");
+    }
+
+
 
 }
 

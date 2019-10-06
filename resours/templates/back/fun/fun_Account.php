@@ -14,6 +14,7 @@ return $row[$name];
 function get_khdama(){
     $query = query("SELECT * FROM users WHERE roll = 'Moderator'");
     confirm($query);
+
 while ($row = fetch_array($query)) {
 
         $users = <<<DELIMETER
@@ -35,11 +36,11 @@ while ($row = fetch_array($query)) {
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">View Profile</a>
+                                                <a href="index?user={$row['id']}" class="dropdown-item">View Profile</a>
                                                 <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Edite</a>
+                                                <a href="index?user={$row['id']}" class="dropdown-item">Edite</a>
                                                 <!-- item-->
-                                                <a href="javascript:void(0);" class="dropdown-item">Delete</a>
+                                                <a href="index?user={$row['id']}&&delete" class="dropdown-item">Delete</a>
 
                                             </div>
                                         </div>

@@ -157,7 +157,7 @@ if ($_SESSION['roll'] == "Admin") {
                                         <a class="nav-link" href="index?View">View Products</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index?A-S=<?php echo $_SESSION['id_user']; ?>">Account Setting</a>
+                                        <a class="nav-link" href="index?user=<?php echo $_SESSION['id_user']; ?>">Account Setting</a>
                                     </li>
 
 

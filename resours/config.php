@@ -22,7 +22,7 @@ defined("DB_USER") ? null : define("DB_USER", "root");
 defined("DB_PASSWORD") ? null : define("DB_PASSWORD", "");
 
 defined("DB_NAME") ? null : define("DB_NAME", "CMS");
-
+$timezone = date_default_timezone_set("Africa/Casablanca");
 $connection = mysqli_connect(DH_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
 if(!$connection){

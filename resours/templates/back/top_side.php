@@ -8,9 +8,19 @@
             <ul class="navbar-nav ml-auto navbar-right-top">
                 <li class="nav-item">
                     <div id="custom-search" class="top-search-bar">
-                        <input class="form-control" type="text" placeholder="Search..">
+                        <form action="index?View" method="GET">
+                            <input class="form-control" type="text" name="Search" placeholder="Search..">
+                        </form>
                     </div>
                 </li>
+                <?php
+
+                // if (isset($_POST['Search']))
+                //     echo 'index?View=' . $_POST['Search'];
+                // else
+                //     echo 'index?View';
+
+                ?>
                 <li class="nav-item dropdown notification">
                     <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                     <ul class="dropdown-menu dropdown-menu-right notification-dropdown">

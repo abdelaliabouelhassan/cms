@@ -12,10 +12,30 @@
 
 function products_view()
 {
+    if (isset($_GET['Search'])) {
+        $sr = trim(escape_string($_GET['Search']));
+        $query = query("SELECT * FROM products WHERE product_name LIKE '%$sr%' OR product_price LIKE '%$sr%'");
+        confirm($query);
+        $count = mysqli_num_rows($query);
+    } else {
+        if(isset($_GET['Page'])){
+            $page = trim(escape_string($_GET['Page']));
+        }else{
+            $page ="";
+        }
+
+        if($page == "" || $page == 1){
+            $page_1 = 0;
+        }
+        else{
+            $page_1 = ($page * 5 ) -5;
+        }
+        $query = query("SELECT * FROM products LIMIT $page_1 , 6");
+        confirm($query);
+        $count = mysqli_num_rows($query);
+    }
 
 
-    $query = query("SELECT * FROM products");
-    confirm($query);
 
     while ($row = fetch_array($query)) {
 
@@ -189,22 +209,62 @@ function get_cat_felter()
 
 
         <div class="custom-control custom-checkbox">
-            <a href="index?View&cat_id=<?php echo $row['cat_id']; ?>">
+            <a class="btn btn-rounded btn-brand" href="index?View&cat_id=<?php echo $row['cat_id']; ?>">
                 <?php echo $row['cat_name']; ?>
 
             </a>
 
         </div>
 
-<?php
+    <?php
+        }
+
+        // if(isset($_POST['Filter'])){
+        // $cat = $_POST['']{
+
+        // }
+        // }
+
+
     }
 
-    // if(isset($_POST['Filter'])){
-    // $cat = $_POST['']{
 
-    // }
-    // }
+    function get_Pagination()
+{
 
 
+    if(isset($_GET['cat_id'])){
+
+        $cat_id = trim(escape_string($_GET['cat_id']));
+        $query = query("SELECT * FROM products WHERE product_cat_id = '$cat_id'");
+        confirm($query);
+
+    }else{
+
+        $query = query("SELECT * FROM products");
+        confirm($query);
+        $count = mysqli_num_rows($query);
+        $count = $count / 5;
+        $count = ceil($count);
+        $page = 0;
+        if (isset($_GET['Page'])) {
+            $page = trim(escape_string($_GET['Page']));
+        }
+
+        for ($i = 1; $i <= $count; $i++) {
+
+            if ($page == $i) {
+                echo  "<li class='page-item active'><a class='page-link' href='index?View&Page={$i}'>{$i}</a></li>";
+            } else {
+                echo  "<li class='page-item'><a class='page-link' href='index?View&Page={$i}'>{$i}</a></li>";
+            }
+        }
+
+
+    }
 }
+
+
+
+
 ?>

@@ -17,5 +17,5 @@
     <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <link rel="stylesheet" href="../assets/vendor/bootstrap-select/css/bootstrap-select.css">
 
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <title>Concept</title>
 </head>

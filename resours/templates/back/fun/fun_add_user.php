@@ -11,6 +11,7 @@ $password_re = trim(escape_string($_POST['password_re']));
 $monthly = escape_string($_POST['Monthly_Salary']);
 $roll = escape_string($_POST['roll']);
 $email = "undefined";
+$adress = "undefined";
 $phone = "undefined";
 $image ="uploads/avatar-1.jpg";
 $status = "Online";
@@ -30,7 +31,7 @@ if($roll == "Select"){
 
 if(empty($error_arreay)){
         $password = password_hash($password, PASSWORD_DEFAULT);
-    $query = query("INSERT INTO users (username,password,log_name,roll,monthly,status,email,phone,image,id_firTime) VALUES ('$username','$password','$log_key','$roll','$monthly','$status','$email','$phone','$image','$isfi')");
+    $query = query("INSERT INTO users (username,password,log_name,roll,monthly,status,email,phone,image,adress,id_firTime) VALUES ('$username','$password','$log_key','$roll','$monthly','$status','$email','$phone','$image','$adress','$isfi')");
     confirm($query);
         array_push($error_arreay, "<span style='color: #0318fc;'>The User Has Been Added !</span>");
 }
@@ -41,10 +42,6 @@ if(empty($error_arreay)){
 if(isset($_POST['Cancel'])){
     redirect("index");
 }
-
-
-
-
 
 
 

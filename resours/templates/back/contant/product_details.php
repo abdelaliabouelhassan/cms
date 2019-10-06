@@ -86,6 +86,15 @@
                     $query = query("DELETE FROM cart WHERE id_cart = '$id_selected'");
                     confirm($query);
                     $is_done = 1;
+                    //had query dyal day_profit
+
+                    $query = query("SELECT * FROM day_net");
+                    confirm($query);
+                    $row = fetch_array($query);
+                    $d_p = $row['Profit'];
+                    $all_p = $Profit + $d_p;
+                    $query = query("UPDATE day_net set Profit = '$all_p'");
+                     confirm($query);
                     redirect("index?product_details=$id_selected");
                 }
             }

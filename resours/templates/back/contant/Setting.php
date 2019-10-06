@@ -25,7 +25,6 @@
                     $id = $_SESSION['id_user'];
                     $query = query("SELECT * FROM users WHERE id = '$id'");
                     confirm($query);
-                    $row = fetch_array($query);
 
 
                     ?>

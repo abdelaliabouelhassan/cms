@@ -12,7 +12,7 @@ require "../resours/templates/back/fun/fun_Categories.php";
 <br>
 
 
-<div class="row">
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h1 class="card-header">Add Categories</h1>
@@ -41,10 +41,10 @@ require "../resours/templates/back/fun/fun_Categories.php";
             </div>
         </div>
     </div>
-</div>
 
 
-<div class="row">
+
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">
             <h1 class="card-header">Delete Categories</h1>
@@ -75,4 +75,3 @@ require "../resours/templates/back/fun/fun_Categories.php";
             </div>
         </div>
     </div>
-</div>
