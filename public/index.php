@@ -6,7 +6,6 @@ if (!isset($_SESSION['islogin'])) {
 }
 
 
-
             ///update day month years net profit is here
 
             $query = query("SELECT * FROM day_net");
@@ -28,6 +27,7 @@ if (!isset($_SESSION['islogin'])) {
                     $zero = 0;
                     $query = query("UPDATE day_net set Profit = '$zero', time = NOW()");
                     confirm($query);
+                    $_SESSION['test'] = "good";
             }
  //week
 
@@ -62,6 +62,8 @@ if (!isset($_SESSION['islogin'])) {
 
             if ($today >= $nextmonth) {
                 $sum_month = $row['Profit'];
+                $query = query("INSERT INTO monthly_profits (profits,date) VALUES('$sum_month', NOW())");
+                confirm($query);
                 $query = query("SELECT * FROM year_net");
                 confirm($query);
                 $row = fetch_array($query);
@@ -79,20 +81,110 @@ if (!isset($_SESSION['islogin'])) {
             $query = query("SELECT * FROM year_net");
             confirm($query);
             $row = fetch_array($query);
+            $pr = $row['Profit'];
             $tt = $row['time'];
             $nextyear = strtotime($tt) + (365 * 24 * 60 * 60);
             $today = time("Y-m-d  h:i:s");
 
             if ($today >= $nextyear) {
-
+                 $query = query("INSERT INTO annual_profits (profits,date) VALUES('$pr', NOW())");
+                confirm($query);
                 $zero = 0;
                 $query = query("UPDATE year_net set Profit = '$zero', time = NOW()");
                 confirm($query);
             }
 
 
+            //////////////////////////////////////////////////////////////////////
 
 
+            ///update day month years net geniral is here
+
+
+            $query = query("SELECT * FROM day_g");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nexday = strtotime($tt) + (1 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+            //day
+            if ($today >= $nexday) {
+                $sum_day = $row['profit'];
+                $query = query("SELECT * FROM week_g");
+                confirm($query);
+                $row = fetch_array($query);
+                $week_net = $row['profit'];
+                $_7day_net = $week_net + $sum_day;
+                $query = query("UPDATE week_g set profit = '$_7day_net'");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE day_g set profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+            //week geniral
+
+
+            $query = query("SELECT * FROM week_g");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nexweek = strtotime($tt) + (7 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nexweek) {
+                $sum_week = $row['profit'];
+                $query = query("SELECT * FROM month_g");
+                confirm($query);
+                $row = fetch_array($query);
+                $month_net = $row['profit'];
+                $_30day_net = $month_net + $sum_week;
+                $query = query("UPDATE month_g set profit = '$_30day_net'");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE week_g set profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+            //month geniral
+            $query = query("SELECT * FROM month_g");
+            confirm($query);
+            $row = fetch_array($query);
+            $tt = $row['time'];
+            $nextmonth = strtotime($tt) + (30 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nextmonth) {
+                $sum_month = $row['profit'];
+                $query = query("INSERT INTO monthly_profits_g (profits,date) VALUES('$sum_month', NOW())");
+                confirm($query);
+                $query = query("SELECT * FROM year_g");
+                confirm($query);
+                $row = fetch_array($query);
+                $year_net = $row['profit'];
+                $_360day_net = $year_net + $sum_month;
+                $query = query("UPDATE year_g set profit = '$_360day_net'");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE month_g set profit = '$zero', time = NOW()");
+                confirm($query);
+            }
+
+            //year geniral
+
+            $query = query("SELECT * FROM year_g");
+            confirm($query);
+            $row = fetch_array($query);
+            $pr = $row['profit'];
+            $tt = $row['time'];
+            $nextyear = strtotime($tt) + (365 * 24 * 60 * 60);
+            $today = time("Y-m-d  h:i:s");
+
+            if ($today >= $nextyear) {
+                $query = query("INSERT INTO annual_profits_g (profits,date) VALUES('$pr', NOW())");
+                confirm($query);
+                $zero = 0;
+                $query = query("UPDATE year_g set profit = '$zero', time = NOW()");
+                confirm($query);
+            }
 
 
 
@@ -205,7 +297,18 @@ if($_SESSION['roll'] == "Admin"){
     if (isset($_GET['Search'])) {
         include(TEMPLATE_BACK . "/contant/View.php");
     }
-
+    if (isset($_GET['Recent_Selling'])) {
+        include(TEMPLATE_BACK . "/contant/Recent_Selling.php");
+    }
+    if (isset($_GET['Monthly_profits'])) {
+        include(TEMPLATE_BACK . "/contant/Monthly_profits.php");
+    }
+    if (isset($_GET['Annual_profits'])) {
+        include(TEMPLATE_BACK . "/contant/Annual_profits.php");
+    }
+    if (isset($_GET['View_Notification'])) {
+        include(TEMPLATE_BACK . "/contant/View_Notification.php");
+    }
 
 
 

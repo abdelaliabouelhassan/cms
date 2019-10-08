@@ -13,7 +13,40 @@
                         </form>
                     </div>
                 </li>
+
                 <?php
+                ///notif
+                $ct = 0;
+                $query1 = query("SELECT * FROM products WHERE product_count = '$ct'");
+                confirm($query1);
+                while ($row = fetch_array($query1)) {
+                    $id = $row['id'];
+                    $query3 = query("SELECT * FROM notif WHERE id_p = '$id'");
+                    if (mysqli_num_rows($query3) == 0) {
+                        $tt = " This product is no longer available in Stock";
+                        $query = query("INSERT INTO notif (id_p,title,date) VALUES ('$id','$tt',NOW())");
+                        confirm($query);
+                    }
+                }
+
+                //check if noti is still
+                $query = query("SELECT * FROM notif");
+                confirm($query);
+                while ($row = fetch_array($query)) {
+                    $id = $row['id_p'];
+                    $query1 = query("SELECT * FROM products WHERE id='$id'");
+                    confirm($query1);
+                    if (mysqli_num_rows($query1) == 0) {
+                        $query3 = query("DELETE FROM notif WHERE id_p =$id");
+                        confirm($query3);
+                    } else {
+                        $row3 = fetch_array($query1);
+                        if ($row3['product_count'] != 0) {
+                            $query5 = query("DELETE FROM notif WHERE id_p =$id");
+                            confirm($query5);
+                        }
+                    }
+                }
 
                 // if (isset($_POST['Search']))
                 //     echo 'index?View=' . $_POST['Search'];
@@ -22,61 +55,60 @@
 
                 ?>
                 <li class="nav-item dropdown notification">
-                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i>
+                        <?php
+                        $query = query("SELECT * FROM notif");
+                        confirm($query);
+                        if (mysqli_num_rows($query) != 0) {
+                            echo "<span class='indicator'></span>";
+                        }
+                        ?>
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
                         <li>
                             <div class="notification-title"> Notification</div>
                             <div class="notification-list">
                                 <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action active">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                <div class="notification-date">2 min ago</div>
+                                    <?php
+
+                                    $query = query("SELECT * FROM notif");
+                                    confirm($query);
+                                    while ($row = fetch_array($query)) {
+                                        $id = $row['id_p'];
+                                        $query1 = query("SELECT * FROM products WHERE id = '$id'");
+                                        confirm($query1);
+                                        $row1 = fetch_array($query1);
+                                        ?>
+
+                                        <a href="index?View_Notification=<?php echo $id  ?>" class="list-group-item list-group-item-action active">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img src="<?php echo $row1['product_image'];  ?>" alt="" class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block"><span class="notification-list-user-name"><?php echo $row1['product_name'];  ?></span><?php echo $row['title'];  ?>.
+                                                    <div class="notification-date"><?php echo $row['date'];  ?></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
-                                                <div class="notification-date">2 days ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                <div class="notification-date">2 min ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                <div class="notification-date">2 min ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <div class="list-footer"> <a href="#">View all notifications</a></div>
+                             <a href="index?View_Notification"><div class="list-footer">View all notifications</div></a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown connection">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i><?php
-                                                                                                                                                                                        $query = query("SELECT * FROM cart");
-                                                                                                                                                                                        confirm($query);
-                                                                                                                                                                                        if (mysqli_num_rows($query) >= 1) {
-                                                                                                                                                                                            echo "<span class='indicator'></span>";
-                                                                                                                                                                                        }
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i>
+                        <?php
+                        $query = query("SELECT * FROM cart");
+                        confirm($query);
+                        if (mysqli_num_rows($query) >= 1) {
+                            echo "<span class='indicator'></span>";
+                        }
 
-                                                                                                                                                                                        ?> </a>
+                        ?> </a>
                     <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                         <li class="connection-list">
 

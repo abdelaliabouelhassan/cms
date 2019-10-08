@@ -95,6 +95,14 @@
                     $all_p = $Profit + $d_p;
                     $query = query("UPDATE day_net set Profit = '$all_p'");
                      confirm($query);
+                      //had query dyal day_geniral
+                    $query = query("SELECT * FROM day_g");
+                    confirm($query);
+                    $row = fetch_array($query);
+                    $d_g = $row['profit'];
+                    $all_p = $price + $d_g;
+                    $query = query("UPDATE day_g set profit = '$all_p'");
+                    confirm($query);
                     redirect("index?product_details=$id_selected");
                 }
             }
