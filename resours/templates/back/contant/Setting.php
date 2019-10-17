@@ -1,4 +1,4 @@
-     <div class="dashboard-wrapper">
+
          <div class="influence-profile">
              <div class="container-fluid dashboard-content ">
                  <div class="row">
