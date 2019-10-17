@@ -151,7 +151,7 @@
                             </div>
                             <div class="card-body border-top">
 
-                                <select name="roll" class="selectpicker">
+                                <select name="roll" class="">
                                     <option value="Select" data-content="<span class='badge badge-primary'>Mustard</span>">Select Roll of this user</option>
                                     <option value="Admin" data-content="<span class='badge badge-success'>Relish</span>">Admin</option>
                                     <option value="Moderator" data-content="<span class='badge badge-brand'>Ketchup</span>">moderator</option>
