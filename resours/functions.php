@@ -55,7 +55,34 @@ function last_active(){
     confirm($query1);
 }
 
+function users_online(){
 
+
+
+    $seasion = session_id();
+    $time = time();
+    $time_out_log_in = 30;
+    $time_out =   $time - $time_out_log_in;
+
+
+    $query = query("SELECT * FROM users_online WHERE session = '$seasion'");
+    confirm($query);
+    $count = mysqli_num_rows($query);
+    if ($count == null) {
+        $query  = query("INSERT INTO users_online (session,time) values('$seasion','$time')");
+        confirm($query);
+    } else {
+        $query = query("UPDATE users_online SET  time='$time' WHERE session='$seasion'");
+        confirm($query);
+    }
+
+
+    $query = query("SELECT * FROM users_online WHERE time >'$time_out'");
+    confirm($query);
+    $count = mysqli_num_rows($query);
+    echo $count;
+
+}
 
 
 ?>

@@ -86,9 +86,20 @@ if ($_SESSION['roll'] == "Admin") {
                     </ul>
                 </div>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fa fa-fw fa-user-circle"></i>Calendar <span class="badge badge-success">6</span></a>
+                    <div id="submenu-5" class="collapse submenu" style="">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index?Calendar">Add Events</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-power-off mr-2"></i>Log Out</a>
-                    <div id="submenu-5" class="collapse submenu" style="">
+                    <div id="submenu-6" class="collapse submenu" style="">
                         <ul class="nav flex-column">
 
                             <li class="nav-item">

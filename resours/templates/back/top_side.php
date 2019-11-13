@@ -95,7 +95,9 @@
                             </div>
                         </li>
                         <li>
-                             <a href="index?View_Notification"><div class="list-footer">View all notifications</div></a>
+                            <a href="index?View_Notification">
+                                <div class="list-footer">View all notifications</div>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -155,6 +157,10 @@
 
 
                 ?>
+
+                <li class="nav-item dropdown nav-user">
+                    <a href="" class="nav-link">Users Online: <?php echo users_online();?></a>
+                </li>
 
                 <li class="nav-item dropdown nav-user">
                     <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo $row['image']; ?>" alt="" class="user-avatar-md rounded-circle"></a>

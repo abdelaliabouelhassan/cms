@@ -33,6 +33,7 @@ $error_array = array();
 if (isset($_SESSION['remember'])) {
 	redirect("../public/index");
 }
+
 if (isset($_POST['login'])) {
 	$name = escape_string($_POST['username']);
 	$password = escape_string($_POST['pass']);
